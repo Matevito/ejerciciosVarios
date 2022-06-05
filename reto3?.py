@@ -8,8 +8,17 @@ def removeInTouple(index, touple):
             editedTouple.append(element)
     return tuple(editedTouple)
 
-def outputText(ventas, idProducto):
-    pass
+def getOutputText(registro , id):
+    # crear string para imrpimir en consola
+    text = "Producto consultado : {} Descripción {} #Parte {} Cantidad vendida {} Stock {} Comprador {} Documento {} Fecha Venta {}".format(id, 
+                                                                                                                                            registro[0],
+                                                                                                                                            registro[1],
+                                                                                                                                            registro[2],
+                                                                                                                                            registro[3],
+                                                                                                                                            registro[4],
+                                                                                                                                            registro[5],
+                                                                                                                                            registro[6])
+    return text
 
 def AutoPartes(ventas: list): 
     '''
@@ -21,9 +30,6 @@ def AutoPartes(ventas: list):
     for touple in ventas: 
         # revisar existencias en editedVentas
         if editedVentas.get(touple[0]) == None:
-            '''
-            Crear un diccionario para el registro es tan tonto por este condicional...
-            '''
             editedVentas[touple[0]] = []
         editedToupleList = removeInTouple(0, touple)
         editedVentas[touple[0]].append(editedToupleList)
@@ -36,15 +42,16 @@ def consultaRegistro(ventas, idProducto):
     registroVentas = AutoPartes(ventas)
 
     # 2. check if id is on ventas list;
-    if idProducto in registroVentas:
-        pass
+    if (idProducto in registroVentas):
+        for register in registroVentas[idProducto]:
+            printResponse = getOutputText(register, idProducto)
+            print(printResponse)
     else:
         print("No hay registro de venta de ese producto")
 
-prubaVentas = [(2001,'rosca', 'PT29872',2,45,'Luis Molero',3456,'12/06/2020'),
-(2010,'bujía', 'MS9512',4,15,'Carlos Rondon',1256,'12/06/2020'),
-(2010,'bujía', 'ER6523',9,36,'Pedro Montes',1243,'12/06/2020'),
-(3578,'tijera', 'QW8523',1,128,'Pedro Faria',1456,'12/06/2020'),
-(9251,'piñón', 'EN5698',2,8,'Juan Peña',565,'12/06/2020')]
+prubaVentas =[(5489,'tornillo', 'RS8512',2,33,'Julio Perez',3654213,'13/06/2020'),
+(3215,'zocalo', 'UM8587',2,125,'Laura Macias',1256321,'13/06/2020'),
+(3698,'biela', 'PT3218',1,78,'Luis Peña',14565487,'13/06/2020'),
+(8795,'cilindro', 'AZ8794',2,96,'Carlos Casio',5612405,'13/06/2020')]
 
-print(consultaRegistro(prubaVentas,  2001));
+consultaRegistro(prubaVentas,  2010)
