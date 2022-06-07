@@ -37,7 +37,7 @@ def AutoPartes(ventas: list):
     return editedVentas
 
 def consultaRegistro(ventas, idProducto):
-    # 2. check if id is on ventas list;
+    # check if id is on ventas list;
     key = str(idProducto)
     if (key in ventas):
         for register in ventas[key]:
