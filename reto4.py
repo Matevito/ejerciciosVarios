@@ -1,7 +1,7 @@
 from functools import reduce
 
 def getPrintResponse(rutineId, total):
-    outputText = "La factura {} tiene un total en pesos de {:0.2f}".format(rutineId, total)
+    outputText = "La factura {} tiene un total en pesos de {:,.2f}".format(rutineId, total)
     return outputText
 
 def removeElementList(index, list):
@@ -36,7 +36,7 @@ def ordenes(rutinaContable):
         rutineId = rutine[0]
         outputText = getPrintResponse(rutineId, reducedPrices)
         print(outputText)
-    print("-------------------------- Fin Registro diario ---------------------------------")
+    print("-------------------------- Fin Registro diario ----------------------------------")
     
 
 testRutine = [
